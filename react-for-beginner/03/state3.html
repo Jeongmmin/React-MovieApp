@@ -1,0 +1,50 @@
+<!-- 리액트 설치하고 리액트 코드와 비교해보기 리액트, 리액트 돔 import 해오기-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+
+      const App = () => {
+        // const data = React.useState(0);
+        const [counter, setCounter] = React.useState(0);
+        const onClick = () => {
+          // setCounter(counter + 1);
+
+          // state_4
+          // 위의 방법은 다른 곳에서 counter의 state가 변했다면 안전하지 않을 수 있다.
+          // 따라서 아래의 방법이 좀 더 안전하다. 현재의 값이라는 것을 확실하게 보장
+
+          setCounter((current) => current + 1);
+        }
+        return (
+          <div>
+            <h3>Total clicks: {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+          </div>
+        );
+      };
+      ReactDOM.render(<App />, root); 
+    </script>
+  </body>
+</html>
+
+
+<!-- 이번 강의 : 왜 modifier가 필요한 지 알아보자 
+그냥 onClick() {counter = counter + 1} 을 쓴다면 또!! reRendering이 필요하다.
+react는 우리가 이런 것을 고려하지 않도록 만들어준다.
+const onClick=() => {modifier(값)} 이라고 정의하면 modifier가 값도 갱신해주고, reRendering도 자동으로 할 수 있도록 도와준다😆
+
+modifier => setCounter로 변경 (보통 쓰는 방식)
+
+state = 컴포넌트의 데이터의 상태
+
+React => 데이터가 바뀔 때마다 컴포넌트를 리렌더링하고 UI를 refresh 한다.
+= state가 바뀌면 reRender
+-->

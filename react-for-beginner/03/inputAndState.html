@@ -1,0 +1,31 @@
+<!-- 리액트 설치하고 리액트 코드와 비교해보기 리액트, 리액트 돔 import 해오기-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+
+      const App = () => {
+        return (
+          <div>
+            <h1>Super Converter</h1>
+            <label htmlFor="minutes">Minutes</label>
+            <input placeholder="Minutes" type="number" id="minutes"/>
+            <label htmlFor="hours">Hours</label>
+            <input placeholder="Hours" type="number" id="hours"/>
+          </div>
+        );
+      };
+      ReactDOM.render(<App />, root); 
+    </script>
+  </body>
+</html>
+
+<!-- 이번강의 unit conversion (단위 변환 앱을 만들 것이다.) -->
+<!-- JSX에서는 label에  for 쓰지 않음 htmlFor  class, for는 이미 JS에 선점된 단어이기 때문이다.-->

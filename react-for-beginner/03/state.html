@@ -1,0 +1,51 @@
+<!-- 리액트 설치하고 리액트 코드와 비교해보기 리액트, 리액트 돔 import 해오기-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      let counter = 0;
+
+      // function countUp() {
+      //   counter = counter + 1;
+      //   ReactDOM.render(<Container/>, root);   // 함수 동작할 때 마다 랜더링 된다. -> 함수로 만들자
+      // }
+
+      function countUp() {
+        counter = counter + 1;
+        render();
+      }
+
+      function render() {
+        ReactDOM.render(<Container />, root); // 함수 동작할 때 마다 랜더링 된다. -> 함수로 만들자
+      }
+
+      const Container = () => {
+        return (
+          <div>
+            <h3>Total clicks: {counter}</h3>
+            <button onClick={countUp}>Click me</button>
+          </div>
+        );
+      };
+      // ReactDOM.render(<Container/>, root);    // app 시작시 랜더링 한번
+      render(); // 이렇게해도 똑같이 동작함
+    </script>
+  </body>
+</html>
+
+<!-- 그냥은 UI가 업데이트 되지 않음, 함수는 동작하고 있는 상태 -->
+<!-- 그 이유 화면을 한 번만 랜더링 하고 있는 상태이기 때문 -> rerendering 필요하다( new version을 ) -->
+<!-- 하지만 여전히 개선 필요함 -->
+
+<!-- 바닐라JS는 counter가 업데이트 될때 body, span이 모두 업데이트 된다. 하지만 React는 counter 숫자가 변하는 부분만 업데이트 된다. -> 매우 중요한 point!!-->
+
+<!-- 리액트는 오직 바뀐 부분만 업데이트 해준다. 굉장히 interactive한 웹을 만들 수 있다는 의미!-->
+
+<!-- 현재는 계속 리렌더링 되서 좋은 방법이 아니다. -->

@@ -1,0 +1,42 @@
+<!-- 리액트 설치하고 리액트 코드와 비교해보기 리액트, 리액트 돔 import 해오기-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+
+      const App = () => {
+        // const data = React.useState(0);
+        const [counter, modifier] = React.useState(0);
+        return (
+          <div>
+            <h3>Total clicks: {counter}</h3>
+            <button>Click me</button>
+          </div>
+        );
+      };
+      ReactDOM.render(<App />, root); 
+    </script>
+  </body>
+</html>
+
+<!-- 지난번처럼 매번 함수를 부르지 않는 방법으로 해보려고 함 -->
+<!-- (2) [0, ƒ] 👉 배열의 첫번 째 값은 초기값, 두번 째 값은 그 값을 바꾸는 함수-->
+<!-- JS에서 배열을 꺼내서 이름을 부여하는 방법 -->
+<!-- const food = ["tomato", "orange"] 
+      const tomato = food[0]
+      const orange = food[1]
+      not good...
+      
+      const food = ["tomato", "orange"] 
+      const [myFavFood, coolOrange] = food;
+        good!!
+-->
+
+<!-- 다음강의 : 왜 modifier가 필요한 지 알아보자 -->

@@ -12,11 +12,22 @@
 
 
       const App = () => {
+
+        const [minutes, setMinutes] = React.useState();
+
+        const onChange = () => {
+          // console.log("somebody wrote")
+          // console.log(event)
+          // console.log(event.target.value)
+          setMinutes(event.target.value);
+;        }
+
         return (
           <div>
             <h1>Super Converter</h1>
             <label htmlFor="minutes">Minutes</label>
-            <input placeholder="Minutes" type="number" id="minutes"/>
+            <input placeholder="Minutes" type="number" id="minutes" value={minutes} onChange={onChange}/>
+            <h4>You want to convert {minutes}</h4>
             <label htmlFor="hours">Hours</label>
             <input placeholder="Hours" type="number" id="hours"/>
           </div>
@@ -29,3 +40,20 @@
 
 <!-- 이번강의 unit conversion (단위 변환 앱을 만들 것이다.) -->
 <!-- JSX에서는 label에  for 쓰지 않음 htmlFor  class, for는 이미 JS에 선점된 단어이기 때문이다.-->
+
+<!-- react에서 input은 uncontrolled라고 알려져있다. = inoput의 value는 통제할 수 가 없음 -> 그래서 state를 만들어줄것이다. -->
+
+<!-- 사용자가 다른 값을 입력할 때 마다 input value의 state를 업데이트 하고싶음 onChange 사용
+      const onChange = () => {
+          console.log("somebody wrote");        
+      }
+
+      이렇게 onChange를 listening 해주면 사용자가 값을 입력할 때마다 onChange가 실행된다.
+
+-->
+
+<!-- 이제는 사용자의 input value값을 알고 싶다. 
+      console.log(event); 하면 어떤 일이 일어나는 지 관찰가능
+      target의 value로 사용자의 input값 알 수 있음
+    setMinutes(event.target.value); 사용
+-->

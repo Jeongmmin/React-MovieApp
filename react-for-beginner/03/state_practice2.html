@@ -1,0 +1,83 @@
+<!-- 리액트 설치하고 리액트 코드와 비교해보기 리액트, 리액트 돔 import 해오기-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById("root");
+
+      const App = () => {
+        // const [minutes, setMinutes] = React.useState(0);  // minutes 이름을 쓰면 헷갈리니까 amout로 변경
+        const [amout, setAmout] = React.useState(0);
+
+        // const [flipped, setFlipped] = React.useState(false);
+        const [inverted, setInverted] = React.useState(false);        // invert : 거꾸로 하다
+
+        const onChange = () => {
+          setAmout(event.target.value);
+        };
+
+        const reset = () => {
+          setAmout(0);
+        };
+
+        // 이렇게 하면 나중에 위험할 수 있음 (다른 곳에서 상태 변경될 수 있으니까)
+        // const onFlip = () => {
+        //   setInverted(!inverted)
+        // }
+
+
+        const onFlip = () => {
+          reset();
+          setInverted(current => !current);
+        }
+
+        return (
+          <div>
+            <h1>⏱ Super Converter</h1>
+            <div>
+              <label htmlFor="minutes">Minutes</label>
+              <input
+                placeholder="Minutes"
+                type="number"
+                id="minutes"
+                value={inverted ? amout * 60 : amout}
+                onChange={onChange}
+                disabled={inverted}
+              />
+              <div>
+                <label htmlFor="hours">Hours</label>
+                <input
+                  placeholder="Hours"
+                  type="number"
+                  id="hours"
+                  onChange={onChange}
+                  value={inverted ? amout : Math.round(amout / 60)}
+                  disabled={!inverted}
+                />
+              </div>
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>{inverted ? "Turn back" : "Invert"}</button>
+          </div>
+        );
+      };
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+
+<!-- flip상태에서도 hours의 value는 여전히 minutes /60 방식으로 나온다.  
+
+    but! 이런 변환 공식은 내가 Minutes에 썼을 때만 일어나야 한다.
+
+    inverted 상태를 가지고 있으므로 이것을 이용해서 inverted = false일 때만 공식을 쓰도록 설정할 것이다.
+
+    삼항 연산자 이용한다.
+
+
+-->

@@ -1,0 +1,88 @@
+<!-- 리액트 설치하고 리액트 코드와 비교해보기 리액트, 리액트 돔 import 해오기-->
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+
+      // function SaveBtn() {
+      //   return <button 
+      //   style={{ 
+      //     backgroundColor: 'tomato',
+      //     color: 'white',
+      //     padding: "10px 20px",
+      //     border: 0,
+      //     borderRadius:10,
+      
+      // }}
+      // >Save Changes</button>
+      // }
+      function Btn({text, big}) {      //props는 object, props안에 text(banana)가 있다 -> 그래서  {}안에 적는다.
+        return <button 
+        style={{ 
+          backgroundColor: 'tomato',
+          color: 'white',
+          padding: "10px 20px",
+          border: 0,
+          borderRadius:10,
+          fontSize: big ? 18 : 12,
+      
+      }}
+      // 이 글자만 바꾸고 싶음 => 
+      >{text}</button>
+      }
+// // 안의 글자만 다르고 다 똑같으니까 다르게 쓰는 방법을 연구해보자
+//       function ConfirmBtn() {
+//         return <button
+//         style={{ 
+//           backgroundColor: 'tomato',
+//           color: 'white',
+//           padding: "10px 20px",
+//           border: 0,
+//           borderRadius:10,
+      
+//       }}
+      
+//         >Confirm</button>
+//       }
+      
+      // JSX 안에 함수형 컴포넌트를 불러온 것
+      function App() {
+        return (
+          <div>
+            <Btn text="Save Changes" big={true}/>
+            <Btn text="Confirm" big={true}/>
+          </div>
+            );
+          };
+
+          const root = document.getElementById("root");
+          ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
+
+
+<!-- 이런 식으로하면 컴포넌트 재 사용이 용이함 분할해서 정복할 수 있음! -->
+
+<!-- 자식 컴포넌트가 더 큰 요소를 가지고 있어도 부모 컴포넌트에서 사용할 수 있다. -->
+
+<!-- 부모 -> 자식으로 데이터 보내는 것 해볼 것이다. -->
+
+<!-- props가 필요한 예를 연습해볼 것이다. -->
+
+<!-- react ( )에 인지를 받는다. 우리가 받는 오브젝트는 컴포넌트의 첫번 째 인자로 보내진다.? -->
+<!-- 
+input value, img src 처럼 syntext를 설정할 수 있다.
+따라서 Btn컴포넌트에 text라고 설정해 줌 이름은 꼭 text일 필요 없고, banana도 가능...
+
+props는 첫 번째이자 유일한 인자, Btn이 받는 유일한 인자, props.banana이런식으로 쓸 수 있다. short cut 방법 -> props는 object, 따라서 ({ text, big }) 이런 식으로 표현. 이 때는 특정한 인자만 전달 될 때 이렇게 표현
+
+ -->
+
+https://replit.com/@wlsdnr129/Props-1
